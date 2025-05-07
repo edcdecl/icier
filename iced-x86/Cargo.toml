@@ -1,0 +1,57 @@
+[package]
+name = "iced-x86"
+version = "1.21.0"
+edition = "2021"
+license = "MIT"
+description = "iced-x86 is a blazing fast and correct x86/x64 disassembler, assembler and instruction decoder written in Rust"
+homepage = "https://github.com/icedland/iced"
+repository = "https://github.com/icedland/iced"
+readme = "README.md"
+# At most 5 keywords can be used
+keywords = ["disassembler", "assembler", "x86", "amd64", "x86_64"]
+categories = ["no-std", "development-tools::debugging", "encoding", "hardware-support", "wasm"]
+# Don't include the tests when uploading to crates.io
+exclude = ["/src/**/test/", "/src/**/tests/", "/src/**/test_utils/"]
+
+# These features are documented in README.md / lib.rs
+[features]
+default = ["std", "decoder", "encoder", "block_encoder", "vex", "evex", "xop", "d3now", "fast_fmt", "std_fmt", "op_code_info", "instr_info"]
+
+std = []
+
+decoder = []
+encoder = []
+block_encoder = ["encoder"]
+code_asm = ["block_encoder"]
+
+vex = []
+evex = []
+xop = []
+d3now = []
+mvex = []
+
+fast_fmt = []
+gas = []
+intel = []
+masm = []
+nasm = []
+std_fmt = ["gas", "intel", "masm", "nasm"]
+
+op_code_info = []
+instr_info = []
+
+# If: serde 
+[dependencies.serde]
+version = "1.0.219"
+optional = true
+default-features = false
+
+[dev-dependencies]
+bincode = "2.0.1"
+serde_json = "1.0.140"
+
+# https://docs.rs/about/metadata
+[package.metadata.docs.rs]
+features = ["serde", "code_asm", "mvex"]
+default-target = "x86_64-unknown-linux-gnu"
+targets = []

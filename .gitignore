@@ -1,3 +1,8 @@
+.idea/
 .vscode/
 coverage.info
 /cov-out/
+
+target/
+pkg/
+Cargo.lock
